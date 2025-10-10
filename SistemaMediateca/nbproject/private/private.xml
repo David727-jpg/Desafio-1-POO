@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/sistemamediateca/TestConexion.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/modelo/Libro.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/interfaz/MenuPrincipal.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/modelo/Material.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/modelo/MaterialEscrito.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/modelo/DVD.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/interfaz/AgregarMaterialWindow.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/modelo/CDAudio.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/interfaz/ListarMaterialesWindow.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/sistemamediateca/SistemaMediateca.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/interfaz/AgregarLibroWindow.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/modelo/Revista.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/base_datos/GestorBaseDatos.java</file>
+            <file>file:/C:/Users/josed/OneDrive/Desktop/SistemaMediateca/src/modelo/MaterialAudiovisual.java</file>
+        </group>
+    </open-files>
+</project-private>
