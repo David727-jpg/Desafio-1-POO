@@ -1,0 +1,49 @@
+-- SISTEMA MEDIATECA - Script de Base de Datos
+-- Ejecutar en MySQL
+
+CREATE DATABASE IF NOT EXISTS mediateca;
+USE mediateca;
+
+-- Tabla principal de materiales
+CREATE TABLE materiales (
+    codigo VARCHAR(10) PRIMARY KEY,
+    tipo ENUM('LIBRO', 'REVISTA', 'CDAUDIO', 'DVD') NOT NULL,
+    titulo VARCHAR(255) NOT NULL,
+    unidades INT NOT NULL DEFAULT 1,
+    editorial VARCHAR(100),
+    duracion INT,
+    genero VARCHAR(50)
+);
+
+-- Tabla para libros
+CREATE TABLE libros (
+    codigo VARCHAR(10) PRIMARY KEY,
+    autor VARCHAR(255) NOT NULL,
+    num_paginas INT,
+    isbn VARCHAR(20),
+    año_publicacion INT,
+    FOREIGN KEY (codigo) REFERENCES materiales(codigo) ON DELETE CASCADE
+);
+
+-- Tabla para revistas
+CREATE TABLE revistas (
+    codigo VARCHAR(10) PRIMARY KEY,
+    periodicidad VARCHAR(50),
+    fecha_publicacion DATE,
+    FOREIGN KEY (codigo) REFERENCES materiales(codigo) ON DELETE CASCADE
+);
+
+-- Tabla para CDs de audio
+CREATE TABLE cds_audio (
+    codigo VARCHAR(10) PRIMARY KEY,
+    artista VARCHAR(255) NOT NULL,
+    num_canciones INT,
+    FOREIGN KEY (codigo) REFERENCES materiales(codigo) ON DELETE CASCADE
+);
+
+-- Tabla para DVDs
+CREATE TABLE dvds (
+    codigo VARCHAR(10) PRIMARY KEY,
+    director VARCHAR(255) NOT NULL,
+    FOREIGN KEY (codigo) REFERENCES materiales(codigo) ON DELETE CASCADE
+);
