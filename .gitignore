@@ -1,0 +1,20 @@
+# Archivos compilados de Java
+*.class
+*.jar
+*.war
+*.ear
+
+# NetBeans
+/nbproject/private/
+/build/
+/dist/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
