@@ -1,7 +1,7 @@
 package interfaz;
 
 import base_datos.GestorBaseDatos;
-import modelo.Libro;
+import modelo.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class ListarMaterialesWindow extends javax.swing.JFrame {
         this.gestorBD = gestorBD;
         this.setLocationRelativeTo(null);
         configurarTabla();
-        cargarMateriales();
+        cargarTodosLosMateriales();
     }
 
     private void initComponents() {
@@ -25,14 +25,16 @@ public class ListarMaterialesWindow extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lista de Materiales");
+        setTitle("Lista de Materiales - Todos los Tipos");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14));
-        jLabel1.setText("MATERIALES DISPONIBLES");
+        jLabel1.setText("TODOS LOS MATERIALES DISPONIBLES");
 
         tablaMateriales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
-            new String [] {"Código", "Tipo", "Título", "Autor/Director", "Unidades"}
+            new String [] {
+                "Código", "Tipo", "Título", "Detalle Específico", "Unidades"
+            }
         ));
         jScrollPane1.setViewportView(tablaMateriales);
 
@@ -57,7 +59,7 @@ public class ListarMaterialesWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -73,7 +75,7 @@ public class ListarMaterialesWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar)
@@ -86,11 +88,11 @@ public class ListarMaterialesWindow extends javax.swing.JFrame {
 
     private void configurarTabla() {
         modeloTabla = (DefaultTableModel) tablaMateriales.getModel();
-        modeloTabla.setRowCount(0); // Limpiar tabla
+        modeloTabla.setRowCount(0);
     }
 
-    private void cargarMateriales() {
-        modeloTabla.setRowCount(0); // Limpiar tabla
+    private void cargarTodosLosMateriales() {
+        modeloTabla.setRowCount(0);
         
         // Cargar libros
         List<Libro> libros = gestorBD.obtenerLibros();
@@ -99,16 +101,54 @@ public class ListarMaterialesWindow extends javax.swing.JFrame {
                 libro.getCodigo(),
                 "LIBRO",
                 libro.getTitulo(),
-                libro.getAutor(),
+                "Autor: " + libro.getAutor() + " | Editorial: " + libro.getEditorial(),
                 libro.getUnidades()
             });
         }
         
-        // Aquí agregarías otros tipos de materiales cuando los implementes
+        // Cargar revistas
+        List<Revista> revistas = gestorBD.obtenerRevistas();
+        for (Revista revista : revistas) {
+            modeloTabla.addRow(new Object[]{
+                revista.getCodigo(),
+                "REVISTA", 
+                revista.getTitulo(),
+                "Periodicidad: " + revista.getPeriodicidad() + " | Editorial: " + revista.getEditorial(),
+                revista.getUnidades()
+            });
+        }
+        
+        // Cargar CDs de audio
+        List<CDAudio> cds = gestorBD.obtenerCDsAudio();
+        for (CDAudio cd : cds) {
+            modeloTabla.addRow(new Object[]{
+                cd.getCodigo(),
+                "CD AUDIO",
+                cd.getTitulo(),
+                "Artista: " + cd.getArtista() + " | Género: " + cd.getGenero() + " | Canciones: " + cd.getNumCanciones(),
+                cd.getUnidades()
+            });
+        }
+        
+        // Cargar DVDs
+        List<DVD> dvds = gestorBD.obtenerDVDs();
+        for (DVD dvd : dvds) {
+            modeloTabla.addRow(new Object[]{
+                dvd.getCodigo(),
+                "DVD",
+                dvd.getTitulo(),
+                "Director: " + dvd.getDirector() + " | Género: " + dvd.getGenero() + " | Duración: " + dvd.getDuracion() + " min",
+                dvd.getUnidades()
+            });
+        }
+        
+        // Mostrar estadísticas
+        int totalMateriales = libros.size() + revistas.size() + cds.size() + dvds.size();
+        jLabel1.setText("TODOS LOS MATERIALES (" + totalMateriales + " registros)");
     }
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {
-        cargarMateriales();
+        cargarTodosLosMateriales();
         javax.swing.JOptionPane.showMessageDialog(this, "✅ Lista actualizada");
     }
 

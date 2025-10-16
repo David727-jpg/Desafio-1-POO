@@ -89,18 +89,28 @@ public class AgregarMaterialWindow extends javax.swing.JFrame {
         comboMaterial.addItem("DVD");
     }
 
-    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {
-        String tipoSeleccionado = (String) comboMaterial.getSelectedItem();
-        switch (tipoSeleccionado) {
-            case "LIBRO":
-                new AgregarLibroWindow(gestorBD).setVisible(true);
-                break;
-            default:
-                JOptionPane.showMessageDialog(this, "Por ahora solo disponible: LIBRO");
-                break;
-        }
-        this.dispose();
+  private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {
+    String tipoSeleccionado = (String) comboMaterial.getSelectedItem();
+    
+    switch (tipoSeleccionado) {
+        case "LIBRO":
+            new AgregarLibroWindow(gestorBD).setVisible(true);
+            break;
+        case "REVISTA":
+            new AgregarRevistaWindow(gestorBD).setVisible(true);
+            break;
+        case "CD DE AUDIO":
+            new AgregarCDAudioWindow(gestorBD).setVisible(true);
+            break;
+        case "DVD":
+            new AgregarDVDWindow(gestorBD).setVisible(true);
+            break;
+        default:
+            JOptionPane.showMessageDialog(this, "Tipo no disponible");
+            break;
     }
+    this.dispose();
+}
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
